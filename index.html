@@ -17,11 +17,15 @@
             --primary-gold: #d4a373;
             --primary-gold-dark: #b8860b;
             --primary-gold-light: #f5e6d3;
-            --secondary-wine: #722f37;
             --dark-bg: #2c2c2c;
             --success-green: #2e7d32;
             --danger-red: #c62828;
             --warning-orange: #f57c00;
+            --category-biere: #f9a825;
+            --category-vin: #8e24aa;
+            --category-whisky: #bf360c;
+            --category-eau: #1e88e5;
+            --category-sucre: #43a047;
         }
 
         body {
@@ -31,7 +35,6 @@
             color: #2c2c2c;
         }
 
-        /* Pages */
         .page {
             display: none;
             min-height: 100vh;
@@ -53,14 +56,12 @@
             }
         }
 
-        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* Header */
         .wedding-header {
             text-align: center;
             padding: 30px 20px;
@@ -79,56 +80,38 @@
             margin-bottom: 10px;
         }
 
-        .subtitle {
-            color: #666;
-            font-size: 1rem;
+        h2 {
+            font-size: 1.8rem;
+            color: var(--primary-gold-dark);
+            margin-bottom: 20px;
         }
 
-        /* Hero Image */
-        .hero-img {
-            width: 100%;
-            max-width: 350px;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border: 4px solid white;
-            margin: 20px 0;
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        /* Boutons */
-        .btn {
+        .category-tab {
+            padding: 10px 25px;
+            border-radius: 50px;
+            background: white;
+            border: 2px solid var(--primary-gold);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .category-tab.active {
             background: linear-gradient(135deg, var(--primary-gold), var(--primary-gold-dark));
             color: white;
-            border: none;
-            padding: 12px 32px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
+            border-color: transparent;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(184, 134, 11, 0.4);
-        }
-
-        .btn-secondary {
-            background: linear-gradient(135deg, #6c757d, #495057);
-            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
-        }
-
-        .btn-danger {
-            background: linear-gradient(135deg, var(--danger-red), #b71c1c);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, var(--success-green), #1b5e20);
-        }
-
-        /* Cards Boissons */
         .drinks-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -147,7 +130,6 @@
             transition: all 0.3s ease;
             border-left: 5px solid var(--primary-gold);
             position: relative;
-            overflow: hidden;
         }
 
         .drink-card.disabled {
@@ -173,6 +155,12 @@
             text-align: left;
         }
 
+        .drink-brand {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 3px;
+        }
+
         .drink-name {
             font-size: 1.2rem;
             font-weight: 600;
@@ -185,6 +173,7 @@
             font-size: 0.8rem;
             color: var(--success-green);
             margin-top: 5px;
+            font-weight: 600;
         }
 
         .drink-stock.low {
@@ -195,7 +184,35 @@
             color: var(--danger-red);
         }
 
-        /* Admin Section */
+        .btn {
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-gold-dark));
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
+        }
+
+        .btn-sm {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-green), #1b5e20);
+        }
+
         .admin-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -208,7 +225,6 @@
             border-radius: 20px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .stat-number {
@@ -234,18 +250,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .table-badge {
@@ -256,14 +262,14 @@
             color: white;
         }
 
-        .admin-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
+        .category-badge {
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: white;
         }
 
-        /* Inputs */
         .input-group {
             margin: 20px 0;
         }
@@ -275,16 +281,8 @@
             font-size: 1rem;
             width: 100%;
             max-width: 300px;
-            transition: all 0.3s ease;
         }
 
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--primary-gold);
-            box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.2);
-        }
-
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -308,26 +306,18 @@
             overflow-y: auto;
         }
 
-        /* Responsive */
+        .hero-img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 4px solid white;
+            margin: 20px 0;
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             .drinks-grid { grid-template-columns: 1fr; }
-            .btn { padding: 10px 20px; font-size: 0.9rem; }
-        }
-
-        /* Loading */
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: var(--primary-gold);
-        }
-
-        .footer-note {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #999;
-            font-size: 0.8rem;
         }
     </style>
 </head>
@@ -341,17 +331,17 @@
                 <p class="subtitle">💍 20 Septembre 2024 💍</p>
             </div>
             <div style="text-align: center;">
-                <img src="dan.jpeg" alt="Dan & Rachel" class="hero-img">
+                <img src="dan.jpeg" alt="Dan & Rachel" class="hero-img" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=400'">
                 <p style="margin: 20px 0; font-size: 1.1rem;">Bienvenue à notre célébration !</p>
                 <button class="btn" onclick="showPage('page-menu')">✨ Passer une commande ✨</button>
                 <div style="margin-top: 30px;">
-                    <small onclick="showAdminLogin()" style="color:#ccc; cursor:pointer;">🔒 Accès Serveur</small>
+                    <small onclick="showAdminLogin()" style="color:#999; cursor:pointer;">🔒 Accès Serveur</small>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Page Menu Client -->
+    <!-- Page Menu Client avec Catégories -->
     <div id="page-menu" class="page">
         <div class="container">
             <div class="wedding-header">
@@ -362,9 +352,10 @@
             <div class="input-group" style="text-align: center;">
                 <input type="number" id="user-table" placeholder="🔢 Votre numéro de table" style="text-align: center;">
             </div>
+
+            <div id="category-tabs" class="category-tabs"></div>
             
             <div id="drinks-menu" class="drinks-grid">
-                <!-- Les boissons seront chargées dynamiquement depuis Firebase -->
                 <div class="loading">Chargement de la carte...</div>
             </div>
             
@@ -382,8 +373,7 @@
                 <p class="subtitle">Gestion des commandes & stocks</p>
             </div>
 
-            <!-- Statistiques -->
-            <div class="admin-stats" id="admin-stats">
+            <div class="admin-stats">
                 <div class="stat-card">
                     <div class="stat-number" id="total-orders">0</div>
                     <div>Commandes totales</div>
@@ -394,24 +384,19 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-number" id="remaining-stock">0</div>
-                    <div>Boissons restantes</div>
+                    <div>Bouteilles restantes</div>
                 </div>
             </div>
 
-            <!-- Liste des commandes actives -->
             <h3>📋 Commandes en attente</h3>
             <div id="orders-list" class="orders-list">
                 <div class="loading">Chargement des commandes...</div>
             </div>
 
-            <!-- Gestion des stocks -->
-            <h3>📦 Gestion des stocks</h3>
-            <div id="stock-management" class="drinks-grid">
-                <!-- Gestion des stocks dynamique -->
-            </div>
+            <h3>📦 Gestion des stocks par catégorie</h3>
+            <div id="stock-management" class="drinks-grid"></div>
 
-            <!-- Actions Admin -->
-            <div class="admin-actions">
+            <div class="admin-actions" style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
                 <button class="btn btn-success" onclick="showAddDrinkModal()">➕ Ajouter une boisson</button>
                 <button class="btn btn-secondary" onclick="refreshStats()">🔄 Rafraîchir</button>
                 <button class="btn btn-secondary" onclick="showPage('page-home')">🚪 Quitter</button>
@@ -423,9 +408,17 @@
     <div id="drink-modal" class="modal">
         <div class="modal-content">
             <h3 id="modal-title">Ajouter une boisson</h3>
-            <input type="text" id="drink-name" placeholder="Nom de la boisson" style="margin: 10px 0;">
-            <input type="number" id="drink-stock-qty" placeholder="Quantité en stock" style="margin: 10px 0;">
-            <input type="text" id="drink-icon" placeholder="Emoji (ex: 🍷)" style="margin: 10px 0;">
+            <select id="drink-category" style="margin: 10px 0; width: 100%;">
+                <option value="biere">🍺 Bière</option>
+                <option value="vin">🍷 Vin</option>
+                <option value="whisky">🥃 Whisky</option>
+                <option value="eau">💧 Eau</option>
+                <option value="sucre">🥤 Boisson Sucrée</option>
+            </select>
+            <input type="text" id="drink-brand" placeholder="Marque (ex: Heineken, Jack Daniel's...)" style="margin: 10px 0;">
+            <input type="text" id="drink-name" placeholder="Nom spécifique (optionnel)" style="margin: 10px 0;">
+            <input type="number" id="drink-stock-qty" placeholder="Nombre de bouteilles" style="margin: 10px 0;">
+            <input type="text" id="drink-icon" placeholder="Emoji (ex: 🍺)" style="margin: 10px 0;">
             <div style="display: flex; gap: 10px; margin-top: 20px;">
                 <button class="btn" onclick="saveDrink()">💾 Enregistrer</button>
                 <button class="btn btn-secondary" onclick="closeModal()">❌ Annuler</button>
@@ -435,9 +428,8 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getDatabase, ref, push, set, onValue, update, remove, get } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+        import { getDatabase, ref, push, set, onValue, update, get } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
-        // Configuration Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyAU6O2qIJLyq64lMo5N8biZ0MoXcPtUf0g",
             authDomain: "gestion-de-mariage-4e2f5.firebaseapp.com",
@@ -450,23 +442,26 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        // Variables globales
         let currentDrinks = [];
         let currentEditId = null;
+        let currentCategory = 'all';
+        
+        const categories = [
+            { id: 'all', name: 'Toutes', icon: '🍽️' },
+            { id: 'biere', name: 'Bières', icon: '🍺' },
+            { id: 'vin', name: 'Vins', icon: '🍷' },
+            { id: 'whisky', name: 'Whiskys', icon: '🥃' },
+            { id: 'eau', name: 'Eaux', icon: '💧' },
+            { id: 'sucre', name: 'Boissons Sucrées', icon: '🥤' }
+        ];
 
-        // Changer de page
         window.showPage = (id) => {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            if (id === 'page-admin') {
-                loadAdminData();
-            }
-            if (id === 'page-menu') {
-                loadDrinksMenu();
-            }
+            if (id === 'page-admin') loadAdminData();
+            if (id === 'page-menu') loadDrinksMenu();
         };
 
-        // Afficher login admin
         window.showAdminLogin = () => {
             const code = prompt("🔐 Code d'accès administrateur:");
             if (code === "1234") {
@@ -476,16 +471,42 @@
             }
         };
 
-        // Charger le menu client avec les stocks
+        function renderCategoryTabs() {
+            const container = document.getElementById('category-tabs');
+            if (!container) return;
+            
+            container.innerHTML = categories.map(cat => `
+                <div class="category-tab ${currentCategory === cat.id ? 'active' : ''}" 
+                     onclick="selectCategory('${cat.id}')">
+                    ${cat.icon} ${cat.name}
+                </div>
+            `).join('');
+        }
+
+        window.selectCategory = (categoryId) => {
+            currentCategory = categoryId;
+            renderCategoryTabs();
+            filterAndRenderDrinks();
+        };
+
+        function filterAndRenderDrinks() {
+            let filtered = currentDrinks;
+            if (currentCategory !== 'all') {
+                filtered = currentDrinks.filter(d => d.category === currentCategory);
+            }
+            renderClientMenu(filtered);
+        }
+
         async function loadDrinksMenu() {
             const drinksRef = ref(db, 'drinks');
             onValue(drinksRef, (snapshot) => {
                 const data = snapshot.val();
                 if (data) {
                     currentDrinks = Object.entries(data).map(([id, drink]) => ({ id, ...drink }));
-                    renderClientMenu(currentDrinks);
+                    renderCategoryTabs();
+                    filterAndRenderDrinks();
                 } else {
-                    document.getElementById('drinks-menu').innerHTML = '<div class="loading">Aucune boisson disponible pour le moment</div>';
+                    document.getElementById('drinks-menu').innerHTML = '<div class="loading">Aucune boisson disponible</div>';
                 }
             });
         }
@@ -495,7 +516,7 @@
             if (!container) return;
             
             if (!drinks || drinks.length === 0) {
-                container.innerHTML = '<div class="loading">Aucune boisson disponible</div>';
+                container.innerHTML = '<div class="loading">Aucune boisson dans cette catégorie</div>';
                 return;
             }
 
@@ -507,14 +528,15 @@
                         <div class="drink-info">
                             <div class="drink-name">
                                 <span>${drink.icon || '🍹'}</span>
-                                <span>${drink.name}</span>
+                                <span>${drink.brand} ${drink.name ? `- ${drink.name}` : ''}</span>
                             </div>
+                            <div class="drink-brand">${getCategoryName(drink.category)}</div>
                             <div class="drink-stock ${stockClass}">
-                                ${drink.stock > 0 ? `📦 ${drink.stock} restant(s)` : '❌ Rupture de stock'}
+                                ${drink.stock > 0 ? `📦 ${drink.stock} bouteille(s)` : '❌ Rupture de stock'}
                             </div>
                         </div>
-                        <button class="btn" ${!isAvailable ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''} 
-                            onclick="placeOrder('${drink.id}', '${drink.name.replace(/'/g, "\\'")}')">
+                        <button class="btn btn-sm" ${!isAvailable ? 'disabled style="opacity:0.5;"' : ''} 
+                            onclick="placeOrder('${drink.id}', '${drink.brand} ${drink.name || ''}', '${drink.category}')">
                             Commander
                         </button>
                     </div>
@@ -522,47 +544,46 @@
             }).join('');
         }
 
-        // Passer une commande
-        window.placeOrder = async (drinkId, drinkName) => {
+        function getCategoryName(catId) {
+            const cat = categories.find(c => c.id === catId);
+            return cat ? `${cat.icon} ${cat.name}` : '🍹 Boisson';
+        }
+
+        window.placeOrder = async (drinkId, drinkFullName, category) => {
             const table = document.getElementById('user-table').value;
             if (!table || table === "") {
                 alert("Veuillez entrer votre numéro de table !");
                 return;
             }
 
-            // Vérifier le stock en temps réel
             const drinkRef = ref(db, `drinks/${drinkId}`);
             const snapshot = await get(drinkRef);
             const drink = snapshot.val();
             
             if (!drink || drink.stock <= 0) {
                 alert("Désolé, cette boisson n'est plus disponible !");
-                loadDrinksMenu(); // Rafraîchir
+                loadDrinksMenu();
                 return;
             }
 
-            // Créer la commande
             const ordersRef = ref(db, 'orders');
             const newOrderRef = push(ordersRef);
             await set(newOrderRef, {
                 drinkId: drinkId,
-                drinkName: drinkName,
+                drinkName: drinkFullName,
+                drinkBrand: drink.brand,
+                category: category,
                 table: table,
                 status: 'pending',
                 timestamp: Date.now(),
                 formattedTime: new Date().toLocaleTimeString()
             });
 
-            // Réduire le stock
-            await update(drinkRef, {
-                stock: drink.stock - 1
-            });
+            await update(drinkRef, { stock: drink.stock - 1 });
 
-            alert(`✅ Commande confirmée ! ${drinkName} arrive à la table ${table}`);
+            alert(`✅ Commande confirmée ! ${drinkFullName} arrive à la table ${table}`);
             document.getElementById('user-table').value = '';
             showPage('page-home');
-            
-            // Notification sonore (optionnelle)
             playNotification();
         };
 
@@ -574,7 +595,6 @@
             } catch(e) {}
         }
 
-        // Charger données admin
         async function loadAdminData() {
             loadOrders();
             loadStockManagement();
@@ -608,8 +628,9 @@
                             <span class="table-badge">Table ${order.table}</span>
                             <strong style="margin-left: 10px;">${order.drinkName}</strong>
                             <div><small>${order.formattedTime}</small></div>
+                            <div><span class="category-badge">${getCategoryName(order.category)}</span></div>
                         </div>
-                        <button class="btn btn-success" style="padding: 8px 20px;" onclick="markAsServed('${id}')">
+                        <button class="btn btn-success btn-sm" onclick="markAsServed('${id}')">
                             ✅ Servi
                         </button>
                     </div>
@@ -642,17 +663,13 @@
                         <div class="drink-info">
                             <div class="drink-name">
                                 <span>${drink.icon || '🍹'}</span>
-                                <span>${drink.name}</span>
+                                <span>${drink.brand} ${drink.name || ''}</span>
                             </div>
-                            <div class="drink-stock">
-                                Stock: ${drink.stock}
-                            </div>
+                            <div class="drink-brand">${getCategoryName(drink.category)}</div>
+                            <div class="drink-stock">Stock: ${drink.stock} bouteille(s)</div>
                         </div>
-                        <div style="display: flex; gap: 8px;">
-                            <button class="btn" style="padding: 8px 15px;" onclick="toggleDrinkStatus('${id}', ${drink.stock})">
-                                ${drink.stock > 0 ? '🔴 Désactiver' : '🟢 Activer'}
-                            </button>
-                            <button class="btn btn-secondary" style="padding: 8px 15px;" onclick="editDrink('${id}', '${drink.name}', ${drink.stock}, '${drink.icon || '🍹'}')">
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <button class="btn btn-sm btn-secondary" onclick="editDrink('${id}', '${drink.category}', '${drink.brand}', '${drink.name || ''}', ${drink.stock}, '${drink.icon || '🍹'}')">
                                 ✏️ Modifier
                             </button>
                         </div>
@@ -661,17 +678,11 @@
             });
         }
 
-        window.toggleDrinkStatus = async (drinkId, currentStock) => {
-            const newStock = currentStock > 0 ? 0 : 10;
-            const drinkRef = ref(db, `drinks/${drinkId}`);
-            await update(drinkRef, { stock: newStock });
-            updateStats();
-            loadDrinksMenu();
-        };
-
-        window.editDrink = (id, name, stock, icon) => {
+        window.editDrink = (id, category, brand, name, stock, icon) => {
             currentEditId = id;
             document.getElementById('modal-title').innerText = 'Modifier la boisson';
+            document.getElementById('drink-category').value = category;
+            document.getElementById('drink-brand').value = brand;
             document.getElementById('drink-name').value = name;
             document.getElementById('drink-stock-qty').value = stock;
             document.getElementById('drink-icon').value = icon;
@@ -681,37 +692,54 @@
         window.showAddDrinkModal = () => {
             currentEditId = null;
             document.getElementById('modal-title').innerText = 'Ajouter une boisson';
+            document.getElementById('drink-category').value = 'biere';
+            document.getElementById('drink-brand').value = '';
             document.getElementById('drink-name').value = '';
             document.getElementById('drink-stock-qty').value = '';
-            document.getElementById('drink-icon').value = '🍹';
+            document.getElementById('drink-icon').value = '🍺';
             document.getElementById('drink-modal').style.display = 'flex';
         };
 
         window.saveDrink = async () => {
+            const category = document.getElementById('drink-category').value;
+            const brand = document.getElementById('drink-brand').value.trim();
             const name = document.getElementById('drink-name').value.trim();
             const stock = parseInt(document.getElementById('drink-stock-qty').value);
-            const icon = document.getElementById('drink-icon').value.trim() || '🍹';
+            const icon = document.getElementById('drink-icon').value.trim() || getDefaultIcon(category);
 
-            if (!name || isNaN(stock) || stock < 0) {
-                alert("Veuillez remplir tous les champs correctement !");
+            if (!brand || isNaN(stock) || stock < 0) {
+                alert("Veuillez remplir la marque et le stock correctement !");
                 return;
             }
 
+            const drinkData = {
+                category: category,
+                brand: brand,
+                name: name,
+                stock: stock,
+                icon: icon
+            };
+
             if (currentEditId) {
-                // Modifier existant
                 const drinkRef = ref(db, `drinks/${currentEditId}`);
-                await update(drinkRef, { name, stock, icon });
+                await update(drinkRef, drinkData);
             } else {
-                // Ajouter nouveau
                 const drinksRef = ref(db, 'drinks');
                 const newDrinkRef = push(drinksRef);
-                await set(newDrinkRef, { name, stock, icon });
+                await set(newDrinkRef, drinkData);
             }
 
             closeModal();
             updateStats();
             loadDrinksMenu();
         };
+
+        function getDefaultIcon(category) {
+            const icons = {
+                biere: '🍺', vin: '🍷', whisky: '🥃', eau: '💧', sucre: '🥤'
+            };
+            return icons[category] || '🍹';
+        }
 
         window.closeModal = () => {
             document.getElementById('drink-modal').style.display = 'none';
@@ -730,14 +758,10 @@
             const drinks = drinksSnap.val();
             const orders = ordersSnap.val();
 
-            // Calculer les stats
             let totalStock = 0;
-            if (drinks) {
-                totalStock = Object.values(drinks).reduce((sum, drink) => sum + (drink.stock || 0), 0);
-            }
+            if (drinks) totalStock = Object.values(drinks).reduce((sum, d) => sum + (d.stock || 0), 0);
 
-            let totalOrders = 0;
-            let servedOrders = 0;
+            let totalOrders = 0, servedOrders = 0;
             if (orders) {
                 const ordersList = Object.values(orders);
                 totalOrders = ordersList.length;
@@ -755,21 +779,22 @@
             loadStockManagement();
         };
 
-        // Initialisation par défaut avec des boissons de base si vide
         async function initializeDefaultDrinks() {
             const drinksRef = ref(db, 'drinks');
             const snapshot = await get(drinksRef);
             
             if (!snapshot.exists()) {
                 const defaultDrinks = [
-                    { name: "Vin Rouge", stock: 50, icon: "🍷" },
-                    { name: "Vin Blanc", stock: 50, icon: "🥂" },
-                    { name: "Coca-Cola", stock: 80, icon: "🥤" },
-                    { name: "Eau Plate", stock: 100, icon: "💧" },
-                    { name: "Eau Pétillante", stock: 60, icon: "💎" },
-                    { name: "Bière", stock: 70, icon: "🍺" },
-                    { name: "Jus d'Orange", stock: 40, icon: "🍊" },
-                    { name: "Champagne", stock: 30, icon: "🥂" }
+                    { category: 'biere', brand: 'Heineken', name: '', stock: 70, icon: '🍺' },
+                    { category: 'biere', brand: 'Stella Artois', name: '', stock: 60, icon: '🍺' },
+                    { category: 'vin', brand: 'Château Margaux', name: 'Rouge', stock: 30, icon: '🍷' },
+                    { category: 'vin', brand: 'Chablis', name: 'Blanc', stock: 25, icon: '🥂' },
+                    { category: 'whisky', brand: 'Jack Daniel\'s', name: 'Old No.7', stock: 15, icon: '🥃' },
+                    { category: 'whisky', brand: 'Johnnie Walker', name: 'Black Label', stock: 12, icon: '🥃' },
+                    { category: 'eau', brand: 'Evian', name: 'Plate', stock: 100, icon: '💧' },
+                    { category: 'eau', brand: 'Perrier', name: 'Pétillante', stock: 80, icon: '💎' },
+                    { category: 'sucre', brand: 'Coca-Cola', name: 'Original', stock: 90, icon: '🥤' },
+                    { category: 'sucre', brand: 'Fanta', name: 'Orange', stock: 50, icon: '🍊' }
                 ];
 
                 for (const drink of defaultDrinks) {
@@ -780,11 +805,9 @@
             }
         }
 
-        // Démarrer l'application
         initializeDefaultDrinks();
         loadDrinksMenu();
 
-        // Rafraîchir les stats toutes les 5 secondes
         setInterval(() => {
             if (document.getElementById('page-admin').classList.contains('active')) {
                 updateStats();
