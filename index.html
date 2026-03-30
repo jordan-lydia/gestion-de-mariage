@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mariage de Dan & Rachel</title>
+    <style>
+        /* CSS pour rendre le site joli */
+        body { font-family: 'Arial', sans-serif; text-align: center; background-color: #f9f4f4; color: #333; margin: 0; padding: 0; }
+        .container { padding: 20px; }
+        .hero-img { width: 100%; max-width: 500px; border-radius: 15px; margin-top: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1 { color: #d4a373; font-size: 2.5rem; }
+        .btn { background-color: #d4a373; color: white; border: none; padding: 15px 30px; font-size: 1.2rem; border-radius: 30px; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        .btn:hover { background-color: #bc8a5f; }
+        
+        /* Section des boissons (cachée au début) */
+        #menu-section { display: none; padding: 20px; }
+        .drink-card { background: white; padding: 15px; margin: 10px auto; max-width: 400px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+
+    <div id="home-section" class="container">
+        <h1>Bienvenue au mariage de <br> Dan & Rachel</h1>
+        <img src="https://via.placeholder.com/500x350?text=Photo+des+Mariés" alt="Dan et Rachel" class="hero-img">
+        <p>Nous sommes honorés de vous avoir parmi nous.</p>
+        <button class="btn" onclick="showMenu()">Passer votre commande</button>
+    </div>
+
+    <div id="menu-section">
+        <h2>Choisissez votre boisson</h2>
+        <div class="drink-card">
+            <span>Coca-Cola</span>
+            <button class="btn" style="padding: 5px 15px; margin:0;" onclick="commander('Coca-Cola')">Commander</button>
+        </div>
+        <div class="drink-card">
+            <span>Vin Rouge</span>
+            <button class="btn" style="padding: 5px 15px; margin:0;" onclick="commander('Vin Rouge')">Commander</button>
+        </div>
+        <div class="drink-card">
+            <span>Eau Minérale</span>
+            <button class="btn" style="padding: 5px 15px; margin:0;" onclick="commander('Eau Minérale')">Commander</button>
+        </div>
+        <button class="btn" style="background:#666;" onclick="showHome()">Retour</button>
+    </div>
+
+    <script type="module">
+        // Importation des modules Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+
+        // Ta configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAU6O2qIJLyq64lMo5N8biZ0MoXcPtUf0g",
+            authDomain: "gestion-de-mariage-4e2f5.firebaseapp.com",
+            projectId: "gestion-de-mariage-4e2f5",
+            storageBucket: "gestion-de-mariage-4e2f5.firebasestorage.app",
+            messagingSenderId: "483303856804",
+            appId: "1:483303856804:web:d33368e6dac65ed7a1a431",
+            measurementId: "G-8123F479YP"
+        };
+
+        // Initialisation
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Rendre les fonctions accessibles globalement
+        window.showMenu = function() {
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('menu-section').style.display = 'block';
+        }
+
+        window.showHome = function() {
+            document.getElementById('home-section').style.display = 'block';
+            document.getElementById('menu-section').style.display = 'none';
+        }
+
+        window.commander = function(nomBoisson) {
+            // Pour l'instant on simule un numéro de table, on pourra le rendre dynamique via QR Code plus tard
+            const tableId = "Table 05"; 
+
+            const commandesRef = ref(database, 'commandes');
+            const nouvelleCommandeRef = push(commandesRef);
+            
+            set(nouvelleCommandeRef, {
+                boisson: nomBoisson,
+                table: tableId,
+                statut: "En attente",
+                heure: new Date().toLocaleTimeString()
+            }).then(() => {
+                alert("Commande envoyée ! Votre " + nomBoisson + " arrive à la " + tableId);
+            }).catch((error) => {
+                alert("Erreur : " + error.message);
+            });
+        }
+    </script>
+</body>
+</html>
