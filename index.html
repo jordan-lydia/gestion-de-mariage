@@ -5,92 +5,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mariage de Dan & Rachel</title>
     <style>
-        /* CSS pour rendre le site joli */
-        body { font-family: 'Arial', sans-serif; text-align: center; background-color: #f9f4f4; color: #333; margin: 0; padding: 0; }
-        .container { padding: 20px; }
-        .hero-img { width: 100%; max-width: 500px; border-radius: 15px; margin-top: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        h1 { color: #d4a373; font-size: 2.5rem; }
-        .btn { background-color: #d4a373; color: white; border: none; padding: 15px 30px; font-size: 1.2rem; border-radius: 30px; cursor: pointer; margin-top: 20px; transition: 0.3s; }
-        .btn:hover { background-color: #bc8a5f; }
-        
-        /* Section des boissons (cachée au début) */
-        #menu-section { display: none; padding: 20px; }
-        .drink-card { background: white; padding: 15px; margin: 10px auto; max-width: 400px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400&display=swap');
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            text-align: center; 
+            background: #fdfaf6; 
+            color: #4a4a4a; 
+            margin: 0; padding: 0; 
+        }
+
+        /* Classes pour cacher/afficher les pages */
+        .page { display: none; padding: 20px; animation: fadeIn 0.5s; }
+        .active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Style Accueil */
+        h1 { font-family: 'Dancing Script', cursive; color: #b8860b; font-size: 3rem; }
+        .hero-img { width: 90%; max-width: 400px; border-radius: 20px; border: 5px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        /* Style Boutons */
+        .btn { 
+            background: linear-gradient(135deg, #d4a373, #b8860b);
+            color: white; border: none; padding: 15px 35px; 
+            font-size: 1rem; border-radius: 50px; cursor: pointer; 
+            margin: 10px; transition: 0.3s; text-transform: uppercase;
+        }
+
+        /* Style Boissons */
+        .drink-card { 
+            background: white; padding: 15px; margin: 10px auto; 
+            max-width: 400px; border-radius: 12px; display: flex; 
+            justify-content: space-between; align-items: center; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid #d4a373;
+        }
+
+        /* Style Admin (Serveurs) */
+        #admin-list { background: #333; color: white; padding: 20px; border-radius: 10px; text-align: left; max-width: 500px; margin: auto; }
+        .order-item { border-bottom: 1px solid #555; padding: 10px 0; }
+        .table-badge { background: #d4a373; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div id="home-section" class="container">
-        <h1>Bienvenue au mariage de <br> Dan & Rachel</h1>
-        <img src="https://via.placeholder.com/500x350?text=Photo+des+Mariés" alt="Dan et Rachel" class="hero-img">
-        <p>Nous sommes honorés de vous avoir parmi nous.</p>
-        <button class="btn" onclick="showMenu()">Passer votre commande</button>
+    <div id="page-home" class="page active">
+        <h1>Dan & Rachel</h1>
+        <img src="https://via.placeholder.com/400x500?text=Photo+des+Maries" alt="Mariés" class="hero-img">
+        <p>Bienvenue à notre célébration !</p>
+        <button class="btn" onclick="showPage('page-menu')">Passer une commande</button>
+        <br>
+        <small onclick="checkAdmin()" style="color:#ccc; cursor:pointer;">Accès Serveur</small>
     </div>
 
-    <div id="menu-section">
-        <h2>Choisissez votre boisson</h2>
-        <div class="drink-card">
-            <span>Coca-Cola</span>
-            <button class="btn" style="padding: 5px 15px; margin:0;" onclick="commander('Coca-Cola')">Commander</button>
-        </div>
-        <div class="drink-card">
-            <span>Vin Rouge</span>
-            <button class="btn" style="padding: 5px 15px; margin:0;" onclick="commander('Vin Rouge')">Commander</button>
-        </div>
-        <div class="drink-card">
-            <span>Eau Minérale</span>
-            <button class="btn" style="padding: 5px 15px; margin:0;" onclick="commander('Eau Minérale')">Commander</button>
-        </div>
-        <button class="btn" style="background:#666;" onclick="showHome()">Retour</button>
+    <div id="page-menu" class="page">
+        <h2>Que voulez-vous boire ?</h2>
+        <input type="text" id="user-table" placeholder="Votre numéro de table (ex: 5)" style="padding:10px; border-radius:5px; border:1px dashed #d4a373; margin-bottom:15px;">
+        
+        <div class="drink-card"><span>🍷 Vin Rouge</span> <button class="btn" onclick="commander('Vin Rouge')">Choisir</button></div>
+        <div class="drink-card"><span>🥤 Coca-Cola</span> <button class="btn" onclick="commander('Coca-Cola')">Choisir</button></div>
+        <div class="drink-card"><span>💧 Eau Plate</span> <button class="btn" onclick="commander('Eau Plate')">Choisir</button></div>
+        <div class="drink-card"><span>🍺 Bière</span> <button class="btn" onclick="commander('Bière')">Choisir</button></div>
+        
+        <button class="btn" style="background:#888;" onclick="showPage('page-home')">Retour</button>
+    </div>
+
+    <div id="page-admin" class="page">
+        <h2>Tableau des Commandes</h2>
+        <div id="admin-list">Chargement des commandes...</div>
+        <button class="btn" onclick="showPage('page-home')">Quitter le mode serveur</button>
     </div>
 
     <script type="module">
-        // Importation des modules Firebase
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+        import { getDatabase, ref, push, set, onValue } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
-        // Ta configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAU6O2qIJLyq64lMo5N8biZ0MoXcPtUf0g",
             authDomain: "gestion-de-mariage-4e2f5.firebaseapp.com",
             projectId: "gestion-de-mariage-4e2f5",
             storageBucket: "gestion-de-mariage-4e2f5.firebasestorage.app",
             messagingSenderId: "483303856804",
-            appId: "1:483303856804:web:d33368e6dac65ed7a1a431",
-            measurementId: "G-8123F479YP"
+            appId: "1:483303856804:web:d33368e6dac65ed7a1a431"
         };
 
-        // Initialisation
         const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
+        const db = getDatabase(app);
 
-        // Rendre les fonctions accessibles globalement
-        window.showMenu = function() {
-            document.getElementById('home-section').style.display = 'none';
-            document.getElementById('menu-section').style.display = 'block';
-        }
+        // Changer de page
+        window.showPage = (id) => {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        };
 
-        window.showHome = function() {
-            document.getElementById('home-section').style.display = 'block';
-            document.getElementById('menu-section').style.display = 'none';
-        }
-
-        window.commander = function(nomBoisson) {
-            // Pour l'instant on simule un numéro de table, on pourra le rendre dynamique via QR Code plus tard
-            const tableId = "Table 05"; 
-
-            const commandesRef = ref(database, 'commandes');
-            const nouvelleCommandeRef = push(commandesRef);
-            
-            set(nouvelleCommandeRef, {
-                boisson: nomBoisson,
-                table: tableId,
-                statut: "En attente",
+        // Envoyer commande
+        window.commander = (boisson) => {
+            const table = document.getElementById('user-table').value || "Inconnue";
+            const cmdRef = ref(db, 'commandes');
+            push(cmdRef, {
+                boisson: boisson,
+                table: table,
                 heure: new Date().toLocaleTimeString()
             }).then(() => {
-                alert("Commande envoyée ! Votre " + nomBoisson + " arrive à la " + tableId);
-            }).catch((error) => {
-                alert("Erreur : " + error.message);
+                alert("Merci ! Votre " + boisson + " arrive bientôt à la table " + table);
+                showPage('page-home');
+            });
+        };
+
+        // Accès Admin (Mot de passe simple : 1234)
+        window.checkAdmin = () => {
+            const code = prompt("Entrez le code serveur :");
+            if(code === "1234") {
+                showPage('page-admin');
+                ecouterCommandes();
+            }
+        };
+
+        // Écouter les commandes (Admin)
+        function ecouterCommandes() {
+            onValue(ref(db, 'commandes'), (snapshot) => {
+                const data = snapshot.val();
+                const listDiv = document.getElementById('admin-list');
+                listDiv.innerHTML = "";
+                for(let id in data) {
+                    const c = data[id];
+                    listDiv.innerHTML += `
+                        <div class="order-item">
+                            <span class="table-badge">Table ${c.table}</span> 
+                            <strong>${c.boisson}</strong> <br>
+                            <small>${c.heure}</small>
+                        </div>
+                    `;
+                }
             });
         }
     </script>
